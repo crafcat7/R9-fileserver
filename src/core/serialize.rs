@@ -185,6 +185,20 @@ impl Encodable for String {
     }
 }
 
+/// The packed version
+impl Encodable for Qid {
+    fn encode<W: WriteBytesExt>(&self, w: &mut W) -> Result<usize> {
+        let typ_bits = self.typ.bits();
+        let version = self.version;
+        let path = self.path;
+
+        match Encoder::new(w) << &typ_bits << &version << &path {
+            SResult(Ok(enc)) => Ok(enc.bytes_written()),
+            SResult(Err(e)) => Err(e),
+        }
+    }
+}
+/*
 impl Encodable for Qid {
     fn encode<W: WriteBytesExt>(&self, w: &mut W) -> Result<usize> {
         match Encoder::new(w) << &self.typ.bits() << &self.version << &self.path {
@@ -192,7 +206,7 @@ impl Encodable for Qid {
             SResult(Err(e)) => Err(e),
         }
     }
-}
+}*/
 
 impl Encodable for Statfs {
     fn encode<W: WriteBytesExt>(&self, w: &mut W) -> Result<usize> {

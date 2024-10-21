@@ -300,6 +300,7 @@ bitflags! {
 /// # Protocol
 /// 9P2000/9P2000.L
 #[derive(Copy, Clone, Debug, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
+#[repr(packed)]
 pub struct Qid {
     /// Specify whether the file is a directory, append-only file, etc.
     pub typ: QidType,
