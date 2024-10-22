@@ -1,7 +1,7 @@
 import os
 import subprocess
 
-build_docker_command = f"docker build . -t ya-vm-file-server"
+build_docker_command = f"docker build . -t R9-fileserver"
 print(f"Running command: {build_docker_command}")
 build_docker = subprocess.Popen(build_docker_command, shell=True)
 build_docker.communicate()

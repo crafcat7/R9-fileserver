@@ -1,20 +1,20 @@
-## ya-vm-file-server
+## R9-fileserver
 
 Cross-platform 9p file server implemented in Rust/Tokio.
 
 The work is based on:
 
-https://github.com/pfpacket/rust-9p
+- https://github.com/pfpacket/rust-9p
+- https://github.com/golemfactory/ya-vm-file-server
 
-Author of original implementation: Ryo Munakata
+Author of original implementation: Ryo Munakata & scx1332
 
 ## why separate project
 
-We have to fork this library to enable cross-platform capabilities of p9 server.
-Original implementation worked only of Linux filesystem.
-* Emulating unix attributes
-* Maximum separation between server filesystem and client filesystem
-* Similar behavior when served on Linux and Windows machine.
+The original purpose of forking this repository was to expand its capabilities and provide real-time maintenance. Therefore, we expanded on the basis of the original repository:
+- Support for macOS capabilities
+- More Support for 9P Protocol (refer to https://github.com/chaos/diod/blob/master/protocol.md)
+- Fixes for implementation issues
 
 ## Build
 
@@ -27,7 +27,7 @@ cargo build
 To compile binary:
 
 ```bash
-cargo build --bin ya-vm-file-server --features="build-binary debug-msg"
+cargo build --bin R9-fileserver --features="build-binary debug-msg"
 ```
 
 ## Testing
@@ -35,7 +35,7 @@ cargo build --bin ya-vm-file-server --features="build-binary debug-msg"
 Build docker:
 
 ```
-docker build . -t ya-vm-file-server
+docker build . -t R9-fileserver
 ```
 
 Running docker tests

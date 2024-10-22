@@ -1,5 +1,5 @@
 [package]
-name = "ya-vm-file-server"
+name = "R9-fileserver"
 version = "0.2.3"
 authors = ["Golem Factory <contact@golem.network>"]
 edition = "2021"
@@ -40,7 +40,7 @@ build-binary = ["env_logger", "structopt"]
 debug-msg = []
 
 [[bin]]
-name = "ya-vm-file-server"
+name = "R9-fileserver"
 path = "src/main.rs"
 required-features = ["build-binary", "debug-msg"]
 
