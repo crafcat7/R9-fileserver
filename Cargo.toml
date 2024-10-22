@@ -30,6 +30,7 @@ bitflags = "1.3"
 enum_primitive = "0.1"
 tokio-util = { version = "0.7", features = ["codec"] }
 bytes = "1.1"
+nix = { version = "0.29.0", features = ["fs"] }
 
 [lib]
 name = "ya_vm_file_server"

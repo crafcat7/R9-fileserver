@@ -335,7 +335,6 @@ pub struct Statfs {
     /// Maximum length of filenames
     pub namelen: u32,
 }
-/*
 impl From<nix::sys::statvfs::Statvfs> for Statfs {
     fn from(buf: nix::sys::statvfs::Statvfs) -> Statfs {
         Statfs {
@@ -350,7 +349,7 @@ impl From<nix::sys::statvfs::Statvfs> for Statfs {
             namelen: buf.name_max() as u32,
         }
     }
-}*/
+}
 
 /// Time struct
 ///

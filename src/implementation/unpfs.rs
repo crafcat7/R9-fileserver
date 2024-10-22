@@ -481,21 +481,33 @@ impl Filesystem for Unpfs {
         Ok(Fcall::Rclunk)
     }
 
-    async fn rstatfs(&self, _fid: &Fid<Self::Fid>) -> Result<Fcall> {
-        log::error!("rstatfs not implemented");
-        /*let path = {
-            let realpath = fid.aux.realpath.read().await;
-            realpath.clone()
-        };*/
+    // async fn rstatfs(&self, _fid: &Fid<Self::Fid>) -> Result<Fcall> {
+    //     log::error!("rstatfs not implemented");
+    //     /*let path = {
+    //         let realpath = fid.aux.realpath.read().await;
+    //         realpath.clone()
+    //     };*/
+    //
+    //     //let fs = nix::sys::statvfs::statvfs(&path)?;
+    //     /* let fs = tokio::task::spawn_blocking(move || nix::sys::statvfs::statvfs(&path))
+    //                 .await
+    //                 .unwrap()?;
+    //     */
+    //     /*Ok(Fcall::Rstatfs {
+    //         statfs: From::from(fs),
+    //     })*/
+    //     return res!(io_err!(Other, std::format!("rstatfs not implemented")));
+    // }
+    async fn rstatfs(&self, fid: &Fid<Self::Fid>) -> Result<Fcall> {
+        let realpath = fid.aux.realpath.read().await.clone();
 
-        //let fs = nix::sys::statvfs::statvfs(&path)?;
-        /* let fs = tokio::task::spawn_blocking(move || nix::sys::statvfs::statvfs(&path))
-                    .await
-                    .unwrap()?;
-        */
-        /*Ok(Fcall::Rstatfs {
+        let fs = tokio::task::spawn_blocking(move || {
+            nix::sys::statvfs::statvfs(&realpath).unwrap()
+        }).await.unwrap();
+
+        Ok(Fcall::Rstatfs {
             statfs: From::from(fs),
-        })*/
-        return res!(io_err!(Other, std::format!("rstatfs not implemented")));
+        })
     }
 }
+
