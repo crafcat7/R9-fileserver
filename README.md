@@ -11,10 +11,10 @@ Author of original implementation: Ryo Munakata & scx1332
 
 ## why separate project
 
-The original purpose of forking this repository was to expand its capabilities and provide real-time maintenance. Therefore, we expanded on the basis of the original repository:
-- Support for macOS capabilities
+The purpose of forking this repository was to expand its capabilities and provide real-time maintenance. Therefore, we expanded on the basis of the original repository:
+- Support for macOS
 - More Support for 9P Protocol (refer to https://github.com/chaos/diod/blob/master/protocol.md)
-- Fixes for implementation issues
+- Fixes for implementation problem
 
 ## Build
 
