@@ -3,6 +3,7 @@ use crate::core::attributes_cache::*;
 use crate::core::lib_utils::Result;
 use std::path::PathBuf;
 use std::sync::Arc;
+use nix::libc::O_CREAT;
 use {
     async_trait::async_trait,
     filetime::FileTime,
@@ -359,8 +360,15 @@ impl Filesystem for Unpfs {
                 .open(&path)
                 .await?
         } else {
+            if flags & O_CREAT as u32 != 0 {
+                tokio::fs::OpenOptions::new()
+                    .create(true)
+                    .write(true)
+                    .open(&path)
+                    .await?;
+            };
+
             tokio::fs::OpenOptions::new()
-                .create(true)
                 .read(true)
                 .open(&path)
                 .await?

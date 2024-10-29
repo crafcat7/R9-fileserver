@@ -250,7 +250,7 @@ bitflags! {
 }
 bitflags! {
     pub struct FileOpenMode : u32 {
-        //const P9_DOTL_RDONLY       = 0x00000000,
+        const P9_DOTL_RDONLY       = 0x00000000;
         const P9_DOTL_WRONLY       = 0x00000001;
         const P9_DOTL_RDWR        =  0x00000002;
         const P9_DOTL_NOACCESS   =   0x00000003;
